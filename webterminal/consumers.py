@@ -145,9 +145,9 @@ class Webterminal(AsyncWebsocketConsumer):
             return
         else:
             try:
-                if text_data:
+                if text_data is not None:
                     async_to_sync(self.chan.send(str(text_data)))
-                if bytes_data:
+                if bytes_data is not None:
                     async_to_sync(self.chan.send(bytes_data))
             except OSError:
                 self.closessh()
